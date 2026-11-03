@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ERROR 1: root element is NationalPark, not NationalParks -->
-<NationalPark>
+<NationalPark
+   xmlns="http://cse445.asu.edu/NationalParks"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://cse445.asu.edu/NationalParks NationalParks.xsd">
 
   <!-- Example park from Figure 1 (three phones, Rating present) -->
   <NationalPark Rating="4.9">
