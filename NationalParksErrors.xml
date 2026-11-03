@@ -108,7 +108,7 @@
 
   <NationalPark>
     <Name>Grand Teton</Name>
-    <Phone>307-739-3399</Phone>
+    <!-- ERROR 3: Phone element is missing -->
     <Address NearestAirport="Jackson Hole">
       <Number>103</Number>
       <Street>Headquarters Loop</Street>
@@ -127,19 +127,19 @@
       <City>Port Angeles</City>
       <State>WA</State>
       <Zip>98362</Zip>
-    <!-- ERROR 4: Address has no closing tag -->
+    </Address>
   </NationalPark>
 
   <NationalPark Rating="4.7">
     <Name>Arches</Name>
-    <!-- ERROR 3: Phone element is missing -->
+    <Phone>435-719-2299</Phone>
     <Address NearestAirport="Canyonlands Field">
       <Number>2282</Number>
       <Street>S West Resource Boulevard</Street>
       <City>Moab</City>
       <State>UT</State>
       <Zip>84532</Zip>
-    </Address>
+    <!-- ERROR 4: Address has no closing tag -->
   </NationalPark>
 
 </NationalPark>
