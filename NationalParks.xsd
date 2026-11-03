@@ -1,52 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  NationalParks.xsd
-  Schema for the National Parks directory (CSE 445 Assignment 4, Figure 1).
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://cse445.asu.edu/NationalParks"
+   targetNamespace="http://cse445.asu.edu/NationalParks"
+   elementFormDefault="qualified" attributeFormDefault="unqualified">
 
-  Structure:
-    NationalParks
-      NationalPark (1..n)                 [optional attribute: Rating]
-        Name                              (exactly one)
-        Phone (1..n)                      (multiple phones allowed)
-        Address                           [required attribute: NearestAirport]
-          Number, Street, City, State, Zip
+   <xsd:annotation>
+      <xsd:documentation xml:lang="en">
+       National Parks directory (CSE 445 Assignment 4, structure of Figure 1)
+      </xsd:documentation>
+   </xsd:annotation>
 
-  <xs:sequence> is used everywhere so that sibling elements must appear
-  in the left-to-right order shown in the diagram.
--->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+   <!-- Root element: a directory holding one or more NationalPark elements -->
+   <xsd:element name="NationalParks" type="NationalParksType"/>
 
-  <!-- Root element: a directory holding one or more NationalPark elements -->
-  <xs:element name="NationalParks">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="NationalPark" type="NationalParkType" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+   <xsd:complexType name="NationalParksType">
+      <xsd:sequence>
+         <xsd:element name="NationalPark" type="NationalParkType" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
 
-  <!-- A single national park: Name, one or more Phone, then Address -->
-  <xs:complexType name="NationalParkType">
-    <xs:sequence>
-      <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Phone" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
-      <xs:element name="Address" type="AddressType" minOccurs="1" maxOccurs="1"/>
-    </xs:sequence>
-    <!-- Optional attribute: may be present or absent without a validation error -->
-    <xs:attribute name="Rating" type="xs:decimal" use="optional"/>
-  </xs:complexType>
+   <!-- A single park: Name, then one or more Phone, then Address (left-to-right order) -->
+   <xsd:complexType name="NationalParkType">
+      <xsd:sequence>
+         <xsd:element name="Name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+         <xsd:element name="Phone" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+         <xsd:element name="Address" type="AddressType" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+      <!-- Optional attribute -->
+      <xsd:attribute name="Rating" type="xsd:decimal" use="optional"/>
+   </xsd:complexType>
 
-  <!-- Address: five child elements in fixed order plus a REQUIRED attribute -->
-  <xs:complexType name="AddressType">
-    <xs:sequence>
-      <xs:element name="Number" type="xs:string"/>
-      <xs:element name="Street" type="xs:string"/>
-      <xs:element name="City" type="xs:string"/>
-      <xs:element name="State" type="xs:string"/>
-      <xs:element name="Zip" type="xs:string"/>
-    </xs:sequence>
-    <!-- Required attribute: every Address must supply it -->
-    <xs:attribute name="NearestAirport" type="xs:string" use="required"/>
-  </xs:complexType>
+   <!-- Address: five child elements in fixed order plus a REQUIRED attribute -->
+   <xsd:complexType name="AddressType">
+      <xsd:sequence>
+         <xsd:element name="Number" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+         <xsd:element name="Street" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+         <xsd:element name="City" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+         <xsd:element name="State" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+         <xsd:element name="Zip" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+      <!-- Required attribute -->
+      <xsd:attribute name="NearestAirport" type="xsd:string" use="required"/>
+   </xsd:complexType>
 
-</xs:schema>
+</xsd:schema>
